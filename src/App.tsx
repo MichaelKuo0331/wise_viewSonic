@@ -1,12 +1,17 @@
-import "./App.css";
+import { Container } from "./styles/styleUnities";
 
-function App() {
+import QrCodePart from "./layout/qrCodePart";
+import StudentPart from "./layout/studentPart";
+
+const App: React.FC = () => {
   return (
-    <>
-      {/* qrCode */}
-      {/* Students  */}
-    </>
+    <Container>
+      {/* 左側卡片 */}
+      <QrCodePart />
+      {/* 右側區域 */}
+      <StudentPart />
+    </Container>
   );
-}
+};
 
 export default App;
