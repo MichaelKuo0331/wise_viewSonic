@@ -1,28 +1,38 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { dummyData } from "./data/students";
+import { IClass } from "./typeModeul/class";
 
-type CounterState = {
-  count: number;
+const initialState: IClass = {
+  ...dummyData,
 };
 
-const counterSlice = createSlice({
-  name: "counter",
-  initialState: { count: 0 } as CounterState,
+const studentsSlice = createSlice({
+  name: "students",
+  initialState,
   reducers: {
-    increment: (state) => {
-      state.count += 1;
+    incrementScore: (state, action: PayloadAction<string>) => {
+      const student = state.students.find((s) => s.id === action.payload);
+      if (student) {
+        student.score += 1;
+      }
     },
-    decrement: (state) => {
-      state.count -= 1;
+    decrementScore: (state, action: PayloadAction<string>) => {
+      const student = state.students.find((s) => s.id === action.payload);
+      if (student) {
+        student.score -= 1;
+      }
     },
   },
 });
 
-export const { increment, decrement } = counterSlice.actions;
+export const { incrementScore, decrementScore } = studentsSlice.actions;
 
 export const store = configureStore({
   reducer: {
-    counter: counterSlice.reducer,
+    class: studentsSlice.reducer,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>;
 
 export default store;

@@ -88,13 +88,36 @@ export const TabButton = styled.button<{ active: boolean }>`
   }
 `;
 
-export const ActionButton = styled.button<{ type: string }>`
+export const ActionButton = styled.button<{ type: string; name: string }>`
   width: 30px;
   height: 20px;
   border: none;
   border-radius: 5px;
   font-size: 0.7rem;
   color: white;
-  cursor: pointer;
-  background-color: ${({ type }) => (type === "minus" ? "#ff4d4d" : "#28a745")};
+  cursor: ${({ name }) => (name === "Guest" ? "not-allowed" : "pointer")};
+
+  background-color: ${({ type, name }) =>
+    name === "Guest"
+      ? "rgb(205, 205, 205)"
+      : type === "minus"
+      ? "#ff4d4d"
+      : "#28a745"};
+
+  &:hover {
+    background-color: ${({ type, name }) =>
+      name === "Guest"
+        ? "rgb(205, 205, 205)"
+        : type === "minus"
+        ? "#ff3333"
+        : "#218838"};
+  }
+  &:active {
+    background-color: ${({ type, name }) =>
+      name === "Guest"
+        ? "rgb(205, 205, 205)"
+        : type === "minus"
+        ? "#cc3333"
+        : "#1e7e34"};
+  }
 `;

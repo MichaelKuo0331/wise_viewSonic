@@ -2,7 +2,11 @@ import { useState } from "react";
 import BackIcon from "../icons/BackIcon";
 import CancleIcon from "../icons/CancleIcon";
 import CopyIcon from "../icons/CopyIcon";
-import { Footer, QrCodeContainer, QrCodeDivShow } from "../styles/QrCodeStyles";
+
+import { useSelector } from "react-redux";
+import { handleCopyText } from "../components/copy";
+import { RootState } from "../store";
+import { Footer, QrCodeContainer, QrCodeDivShow } from "../styles/qrCodeStyles";
 import {
   BackDiv,
   BlueButton,
@@ -14,6 +18,8 @@ import {
 
 const QrCodePart = () => {
   const [show, setShow] = useState(true);
+  const data = useSelector((state: RootState) => state.class);
+
   if (!show) return null;
 
   return (
@@ -27,16 +33,16 @@ const QrCodePart = () => {
         <BackIcon /> Back to Class List
       </BackDiv>
       <FlexDiv>
-        <BorderP>Join 302 Science</BorderP>
+        <BorderP>{data.className}</BorderP>
       </FlexDiv>
       <FlexDiv>
-        <BorderP>ID: X58E9647</BorderP>
-        <BlueButton>
+        <BorderP>{"ID:" + data.id}</BorderP>
+        <BlueButton onClick={() => handleCopyText(data.id)}>
           <CopyIcon />
         </BlueButton>
         &emsp;
         <BorderP>Link</BorderP>
-        <BlueButton>
+        <BlueButton onClick={() => handleCopyText(data.qRCodeLink)}>
           <CopyIcon />
         </BlueButton>
       </FlexDiv>

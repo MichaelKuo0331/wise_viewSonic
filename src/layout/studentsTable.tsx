@@ -3,25 +3,48 @@ import {
   StudentCardAction,
   StudentCardName,
   StudentCardNumber,
+  StudentCardScore,
   StudentsList,
 } from "../styles/studentStyles";
 
+import { useDispatch, useSelector } from "react-redux";
+import { decrementScore, incrementScore, RootState } from "../store";
 import { ActionButton } from "../styles/styleUnities";
+import { IStudent } from "../typeModeul/class";
 
-const StudentsListTable = () => {
+const StudentsListTable: React.FC<{ data: IStudent[] }> = () => {
+  const dispatch = useDispatch();
+  const students = useSelector((state: RootState) => state.class.students);
+
   return (
     <>
       <StudentsList>
-        {Array.from({ length: 20 }, (_, index) => (
-          <StudentCard key={index}>
-            <StudentCardNumber>
-              {String(index + 1).padStart(2, "0")}
+        {students.map((student: IStudent) => (
+          <StudentCard key={student.id}>
+            <StudentCardNumber name={student.name}>
+              {student.id}
             </StudentCardNumber>
-            <StudentCardName>Guest</StudentCardName>
-            <StudentCardAction>
-              <ActionButton type="minus">-1</ActionButton>
-              <span className="score">2</span>
-              <ActionButton type="plus">+1</ActionButton>
+            <StudentCardName name={student.name}>
+              {student.name}
+            </StudentCardName>
+            <StudentCardAction name={student.name}>
+              <ActionButton
+                type="minus"
+                name={student.name}
+                onClick={() => dispatch(decrementScore(student.id))}
+              >
+                -1
+              </ActionButton>
+              <StudentCardScore name={student.name}>
+                {student.score}
+              </StudentCardScore>
+              <ActionButton
+                type="plus"
+                name={student.name}
+                onClick={() => dispatch(incrementScore(student.id))}
+              >
+                +1
+              </ActionButton>
             </StudentCardAction>
           </StudentCard>
         ))}
