@@ -1,40 +1,63 @@
 import CancleIcon from "../icons/CancleIcon";
+import DotsIcon from "../icons/DotsIcon";
 import PeopleIcon from "../icons/PeopleIcon";
+import { StudentHeader, StundentDivShow } from "../styles/studentStyles";
 import {
-  StudentCard,
-  StudentsList,
-  StundentCard,
-} from "../styles/studentStyles";
-import { BorderP, CancleIconContainer, FlexDiv } from "../styles/styleUnities";
+  BorderP,
+  Button,
+  CancleIconDiv,
+  FlexDiv,
+  TabButton,
+} from "../styles/styleUnities";
+import GroupTable from "./groupTable";
+import StudentsListTable from "./studentsTable";
+
+import { useState } from "react";
 
 const StudentPart = () => {
+  const [activeTab, setActiveTab] = useState("list");
+  const [show, setShow] = useState(true);
+
+  if (!show) return null;
+
   return (
     <>
-      {/* <StudentsList />
-      <Group /> */}
-      <StundentCard>
-        <CancleIconContainer>
-          <CancleIcon />
-        </CancleIconContainer>
-        <FlexDiv style={{ marginTop: "30px" }}>
-          <BorderP>302 Science</BorderP>
-          <PeopleIcon />
-          <BorderP>16/30</BorderP>
-        </FlexDiv>
-        <div style={{ display: "flex", gap: "10px" }}>
-          <button>Student List</button>
-          <button>Group</button>
-        </div>
-        <StudentsList>
-          {/* 學生卡片範例 */}
-          {Array.from({ length: 20 }, (_, index) => (
-            <StudentCard key={index}>
-              <span>{index + 1}</span>
-              <span>Guest</span>
-            </StudentCard>
-          ))}
-        </StudentsList>
-      </StundentCard>
+      <StundentDivShow show={show}>
+        <StudentHeader>
+          <CancleIconDiv>
+            <Button onClick={() => setShow(false)}>
+              <CancleIcon />
+            </Button>
+          </CancleIconDiv>
+          <FlexDiv style={{ marginTop: "30px" }}>
+            <BorderP>302 Science</BorderP>
+            <PeopleIcon />
+            <BorderP>16/30</BorderP>
+          </FlexDiv>
+          <FlexDiv>
+            <TabButton
+              active={activeTab === "list"}
+              onClick={() => setActiveTab("list")}
+            >
+              <BorderP>Student List</BorderP>
+            </TabButton>
+            <TabButton
+              active={activeTab === "group"}
+              onClick={() => setActiveTab("group")}
+            >
+              <BorderP>Group</BorderP>
+            </TabButton>
+            <Button
+              style={{ marginLeft: "auto" }}
+              onClick={() => console.log("click")}
+            >
+              <DotsIcon />
+            </Button>
+          </FlexDiv>
+        </StudentHeader>
+        {activeTab === "list" && <StudentsListTable />}
+        {activeTab === "group" && <GroupTable />}
+      </StundentDivShow>
     </>
   );
 };

@@ -1,16 +1,14 @@
-import { Container } from "./styles/styleUnities";
+import { MainContainer } from "./styles/styleUnities";
 
 import QrCodePart from "./layout/qrCodePart";
 import StudentPart from "./layout/studentPart";
 
-const App: React.FC = () => {
+const App = () => {
   return (
-    <Container>
-      {/* 左側卡片 */}
+    <MainContainer>
       <QrCodePart />
-      {/* 右側區域 */}
       <StudentPart />
-    </Container>
+    </MainContainer>
   );
 };
 
