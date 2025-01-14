@@ -5,6 +5,7 @@ import CopyIcon from "../icons/CopyIcon";
 
 import { useSelector } from "react-redux";
 import { handleCopyText } from "../components/copy";
+import QrCodeComponent from "../components/qrCode";
 import { RootState } from "../store";
 import { Footer, QrCodeContainer, QrCodeDivShow } from "../styles/qrCodeStyles";
 import {
@@ -46,7 +47,9 @@ const QrCodePart = () => {
           <CopyIcon />
         </BlueButton>
       </FlexDiv>
-      <QrCodeContainer>QR Code</QrCodeContainer>
+      <QrCodeContainer>
+        <QrCodeComponent url={data.qRCodeLink} />
+      </QrCodeContainer>
       <Footer>Version 1.1.7</Footer>
     </QrCodeDivShow>
   );

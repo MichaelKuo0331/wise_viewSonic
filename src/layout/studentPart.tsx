@@ -17,8 +17,9 @@ import { useState } from "react";
 import { RootState } from "../store";
 
 const StudentPart = () => {
-  const [activeTab, setActiveTab] = useState("list");
+  const [activeTab, setActiveTab] = useState<"list" | "group">("list");
   const [show, setShow] = useState(true);
+
   const data = useSelector((state: RootState) => state.class);
   if (!show) return null;
 
@@ -57,10 +58,8 @@ const StudentPart = () => {
             </Button>
           </FlexDiv>
         </StudentHeader>
-        {activeTab === "list" && (
-          <StudentsListTable data={data.students || []} />
-        )}
-        {activeTab === "group" && <GroupTable />}
+        {activeTab === "list" && <StudentsListTable />}
+        {activeTab === "group" && <GroupTable activeTab={activeTab} />}
       </StundentDivShow>
     </>
   );
