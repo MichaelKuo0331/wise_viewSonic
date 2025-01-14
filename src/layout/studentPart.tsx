@@ -9,6 +9,8 @@ import {
   CancleIconDiv,
   FlexDiv,
   TabButton,
+  TooltipText,
+  TooltipWrapper,
 } from "../styles/styleUnities";
 import GroupTable from "./groupTable";
 import StudentsListTable from "./studentsTable";
@@ -19,6 +21,7 @@ import { RootState } from "../store";
 const StudentPart = () => {
   const [activeTab, setActiveTab] = useState<"list" | "group">("list");
   const [show, setShow] = useState(true);
+  const [isTooltipVisible, setTooltipVisible] = useState(false);
 
   const data = useSelector((state: RootState) => state.class);
   if (!show) return null;
@@ -50,12 +53,17 @@ const StudentPart = () => {
             >
               <BorderP>Group</BorderP>
             </TabButton>
-            <Button
-              style={{ marginLeft: "auto", marginRight: "30px" }}
-              onClick={() => console.log("click")}
-            >
-              <DotsIcon />
-            </Button>
+            <TooltipWrapper style={{ marginLeft: "auto", marginRight: "30px" }}>
+              <Button
+                onClick={() => setTooltipVisible((prev) => !prev)}
+                onBlur={() => setTooltipVisible(false)}
+              >
+                <DotsIcon />
+              </Button>
+              <TooltipText isVisible={isTooltipVisible}>
+                這是提示文字
+              </TooltipText>
+            </TooltipWrapper>
           </FlexDiv>
         </StudentHeader>
         {activeTab === "list" && <StudentsListTable />}

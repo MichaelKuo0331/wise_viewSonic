@@ -121,3 +121,25 @@ export const ActionButton = styled.button<{ type: string; name: string }>`
         : "#1e7e34"};
   }
 `;
+
+export const TooltipWrapper = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+export const TooltipText = styled.div<{ isVisible: boolean }>`
+  visibility: ${(props) => (props.isVisible ? "visible" : "hidden")};
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 1;
+  opacity: ${(props) => (props.isVisible ? 1 : 0)};
+  transition: opacity 0.3s ease;
+`;
