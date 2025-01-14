@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { handleCopyText } from "../components/copy";
 import QrCodeComponent from "../components/qrCode";
 import { RootState } from "../store";
-import { Footer, QrCodeContainer, QrCodeDivShow } from "../styles/qrCodeStyles";
+import { Footer, QrCodeContainer, QrCodeHeader } from "../styles/qrCodeStyles";
 import {
   BackDiv,
   BlueButton,
@@ -24,34 +24,34 @@ const QrCodePart = () => {
   if (!show) return null;
 
   return (
-    <QrCodeDivShow show={show}>
-      <CancleIconDiv>
-        <Button onClick={() => setShow(false)}>
-          <CancleIcon />
-        </Button>
-      </CancleIconDiv>
-      <BackDiv>
-        <BackIcon /> Back to Class List
-      </BackDiv>
-      <FlexDiv>
-        <BorderP>{data.className}</BorderP>
-      </FlexDiv>
-      <FlexDiv>
-        <BorderP>{"ID:" + data.id}</BorderP>
-        <BlueButton onClick={() => handleCopyText(data.id)}>
-          <CopyIcon />
-        </BlueButton>
-        &emsp;
-        <BorderP>Link</BorderP>
-        <BlueButton onClick={() => handleCopyText(data.qRCodeLink)}>
-          <CopyIcon />
-        </BlueButton>
-      </FlexDiv>
-      <QrCodeContainer>
-        <QrCodeComponent url={data.qRCodeLink} />
-      </QrCodeContainer>
+    <QrCodeContainer show={show}>
+      <QrCodeHeader>
+        <CancleIconDiv>
+          <Button onClick={() => setShow(false)}>
+            <CancleIcon />
+          </Button>
+        </CancleIconDiv>
+        <BackDiv>
+          <BackIcon /> Back to Class List
+        </BackDiv>
+        <FlexDiv>
+          <BorderP>{"Join" + " " + data.className}</BorderP>
+        </FlexDiv>
+        <FlexDiv>
+          <BorderP>{"ID:" + data.id}</BorderP>
+          <BlueButton onClick={() => handleCopyText(data.id)}>
+            <CopyIcon />
+          </BlueButton>
+          &ensp;
+          <BorderP>Link</BorderP>
+          <BlueButton onClick={() => handleCopyText(data.qRCodeLink)}>
+            <CopyIcon />
+          </BlueButton>
+        </FlexDiv>
+      </QrCodeHeader>
+      <QrCodeComponent url={data.qRCodeLink} />
       <Footer>Version 1.1.7</Footer>
-    </QrCodeDivShow>
+    </QrCodeContainer>
   );
 };
 

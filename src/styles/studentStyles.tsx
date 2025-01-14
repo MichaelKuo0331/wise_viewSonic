@@ -17,13 +17,20 @@ export const StudentHeader = styled.div`
   border-radius: 10px 10px 0 0;
   background-color: rgba(224, 220, 220, 0.48);
   padding: 10px 10px 10px 30px;
+
+  @media (max-width: 768px) {
+    padding: 7px 7px 10px 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 0 10px 10px;
+  }
 `;
 
 // 學生列表
 export const StudentsList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(4, auto);
+  display: flex;
+  flex-wrap: wrap;
   gap: 15px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
@@ -96,4 +103,15 @@ export const StudentCardScore = styled.span<{ name: string }>`
   font-size: 0.8rem;
   font-weight: bold;
   color: ${({ name }) => (name === "Guest" ? "rgb(205, 205, 205)" : "#333")};
+`;
+
+export const GroupContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  min-height: 120px;
 `;

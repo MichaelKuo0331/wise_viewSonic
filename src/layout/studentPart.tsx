@@ -16,6 +16,7 @@ import GroupTable from "./groupTable";
 import StudentsListTable from "./studentsTable";
 
 import { useState } from "react";
+import { SettingIcon } from "../icons/SettingIcon";
 import { RootState } from "../store";
 
 const StudentPart = () => {
@@ -61,7 +62,7 @@ const StudentPart = () => {
                 <DotsIcon />
               </Button>
               <TooltipText isVisible={isTooltipVisible}>
-                這是提示文字
+                <SettingIcon />
               </TooltipText>
             </TooltipWrapper>
           </FlexDiv>

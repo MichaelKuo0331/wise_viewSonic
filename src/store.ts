@@ -13,13 +13,15 @@ const studentsSlice = createSlice({
     incrementScore: (state, action: PayloadAction<string>) => {
       const student = state.students.find((s) => s.id === action.payload);
       if (student) {
-        student.score += 1;
+        if (student.score < 100) student.score += 1;
+        return;
       }
     },
     decrementScore: (state, action: PayloadAction<string>) => {
       const student = state.students.find((s) => s.id === action.payload);
       if (student) {
-        student.score -= 1;
+        if (student.score > 0) student.score -= 1;
+        return;
       }
     },
   },

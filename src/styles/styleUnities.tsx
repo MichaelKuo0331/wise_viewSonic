@@ -16,18 +16,42 @@ export const BackDiv = styled.div`
   font-size: 0.8rem;
   display: flex;
   align-items: center;
+
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.6rem;
+  }
 `;
 
 export const FlexDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   margin: 15px 0;
+
+  @media (max-width: 768px) {
+    margin: 10px 0;
+  }
+
+  @media (max-width: 480px) {
+    margin: 8px 0;
+    gap: 5px;
+  }
 `;
 
 export const BorderP = styled.p`
   font-weight: bold;
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const BlueButton = styled.button`
@@ -69,7 +93,6 @@ export const Button = styled.button`
 export const CancleIconDiv = styled.div`
   display: flex;
   justify-content: flex-end;
-  text-align: right;
 `;
 
 export const TabButton = styled.button<{ active: boolean }>`
@@ -142,4 +165,9 @@ export const TooltipText = styled.div<{ isVisible: boolean }>`
   z-index: 1;
   opacity: ${(props) => (props.isVisible ? 1 : 0)};
   transition: opacity 0.3s ease;
+`;
+
+export const SettingIconButton = styled.button`
+  display: flex;
+  align-items: center;
 `;

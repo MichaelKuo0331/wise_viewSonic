@@ -1,35 +1,52 @@
 import styled from "styled-components";
 
-export const QrCodeDiv = styled.div`
-  flex: 4;
+export const QrCodeContainer = styled.div<{ show: boolean }>`
+  flex: 4.5;
   display: flex;
   flex-direction: column;
   align-items: left;
   background-color: rgba(224, 220, 220, 0.48);
   border-radius: 10px;
-  padding: 10px 10px 10px 30px;
-`;
-
-export const QrCodeDivShow = styled(QrCodeDiv)<{ show: boolean }>`
+  width: 100%;
   display: ${({ show }) => (show ? "block" : "none")};
 `;
 
-export const QrCodeContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const QrCodeHeader = styled.div`
+  padding: 10px 10px 0 30px;
+  @media (max-width: 768px) {
+    padding: 10px 10px 0 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px 10px 0 10px;
+  }
+`;
+
+export const QrCodeImgContainer = styled.div<{ url: string }>`
+  background-image: url(${({ url }) => url});
   background-color: #fff;
   border-radius: 10px;
   width: 90%;
-  height: 80%;
-  margin-left: 10px;
+  margin: 0 auto;
+  aspect-ratio: 1.1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 export const Footer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   font-size: 0.9rem;
   color: #666;
   height: 40px;
+  margin-top: 10px;
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    margin-top: 5px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+    margin-top: 2px;
+  }
 `;

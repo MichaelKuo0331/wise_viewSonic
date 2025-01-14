@@ -1,12 +1,10 @@
-import { QRCodeSVG } from "qrcode.react";
+import { QrCodeImgContainer } from "../styles/qrCodeStyles";
 
 const QrCodeComponent = ({ url }: { url: string }) => {
-  return (
-    <div>
-      <h3>QR Code</h3>
-      <QRCodeSVG value={url} size={300} />
-    </div>
-  );
+  const imgSrc =
+    "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + url;
+
+  return <QrCodeImgContainer url={imgSrc} />;
 };
 
 export default QrCodeComponent;
