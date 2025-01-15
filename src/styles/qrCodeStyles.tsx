@@ -28,6 +28,7 @@ export const QrCodeImgContainer = styled.div<{ url: string }>`
   border-radius: 10px;
   width: 90%;
   margin: 0 auto;
+  max-width: 600px;
   aspect-ratio: 1.1;
   background-size: contain;
   background-repeat: no-repeat;
