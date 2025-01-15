@@ -5,9 +5,3 @@ Install following:
 ```
  npm install @reduxjs/toolkit react-redux
 ```
-
-2. qrCode
-
-```
-npm install qrcode.react
-```
